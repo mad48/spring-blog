@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/springtest?autoReconnect=true&amp;useSSL=false&amp;useUnicode=yes&amp;characterEncoding=UTF-8
+        </property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property><!--com.mysql.jdbc.Driver-->
+        <!--<property name="hbm2ddl.auto">update</property>-->
+
+        <!-- NOTE that after automapping with IDEA property username and password will delete -->
+        <!--and will be:  Initial SessionFactory failedorg.hibernate.service.spi.ServiceException: Unable to create requested service-->
+        <property name="connection.username">root</property>
+        <property name="connection.password"></property>
+        <!-- NOTE that after automapping with IDEA property username and password will delete -->
+
+
+        <mapping class="com.madsoft.web.model.Post"/>
+        <mapping class="com.madsoft.web.model.Comment"/>
+        <mapping class="com.madsoft.web.model.User"/>
+        <mapping class="com.madsoft.web.model.Role"/>
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+
+    </session-factory>
+</hibernate-configuration>

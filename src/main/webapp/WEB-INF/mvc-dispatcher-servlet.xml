@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:security="http://www.springframework.org/schema/security"
+             xsi:schemaLocation="
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+    <!-- Dispatcher Servlet - определяет инфраструктуру обработки запросов сервлетом -->
+
+    <!-- Включает поддержку @Controller и др. в Spring MVC -->
+    <annotation-driven/>
+
+    <!-- Обрабатывает HTTP GET запросы для указанного каталога более эффективно для статических ресурсов -->
+    <resources mapping="/resources/**" location="/resources/"/>
+
+    <!-- Определяет какое представление рендерить на основании вычеслений в @Controller (return ModelAndView) -->
+    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <beans:property name="prefix" value="/WEB-INF/pages/"/>
+        <beans:property name="suffix" value=".jsp"/>
+    </beans:bean>
+
+    <!-- Сканирует пакет для поиска бинов -->
+    <context:component-scan base-package="com.madsoft.*"/>
+
+    <!--  Включает Spring аннотации вроде @Autowired-->
+    <context:annotation-config/>
+
+
+    <!-- Включает поддержку аннотаций по безопасности-->
+    <security:global-method-security secured-annotations="enabled"
+                                     jsr250-annotations="enabled"
+                                     pre-post-annotations="enabled"/>
+</beans:beans>
